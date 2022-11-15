@@ -12,7 +12,7 @@ const UserController = {
       res.status(201).send(user);
     } catch (error) {
       console.error(error);
-      res.status(500).send({ msg: "Problem by creating a new user", error });
+      res.status(500).send({ msg: "Error: Unable to create a user", error });
     }
   },
 
@@ -50,7 +50,15 @@ const UserController = {
         message: "Something went wrong, but don't fret - it's not your fault. Let's try logging out again"
       })
     }
-  }
+  },
+  async conectedUser (req, res) {
+    try {
+      const user = await User.findById(req.user._id);
+      res.send(user);
+    } catch (error) {
+        console.error(error);
+      };
+    }
 };
-
+ //si en el futuro quiero que me traiga comentarios hay que hacerlo en user models - > user esquema
 module.exports = UserController;
