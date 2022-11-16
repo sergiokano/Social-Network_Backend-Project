@@ -4,7 +4,7 @@ const User = require("../models/User");
 const PostController = {
   async createPost(req, res) {
     try {
-      const post = await Post.create(req.body);
+      const post = await Post.create({...req.body, postedBy: req.user._id});
       res.status(201).send(post);
     } catch (error) {
       console.error(error);
@@ -29,6 +29,17 @@ const PostController = {
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to delete a post", error });
+    }
+  },
+
+  async getInfo(req, res) {
+    try {
+      const post = await Post.find()
+      .populate("postedBy")
+       res.send(post);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to get all posts", error });
     }
   },
 };
