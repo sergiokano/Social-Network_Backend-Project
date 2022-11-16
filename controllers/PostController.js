@@ -32,11 +32,14 @@ const PostController = {
     }
   },
   // Endpoint para traer todos los posts junto a los usuarios que hicieron ese post y junto a los comentarios del post
-  async getInfo(req, res) {
+  async getAllPosts(req, res) {
     try {
-      const post = await Post.find()
+      const { page = 1, limit = 10 } = req.query;
+      const posts = await Post.find()
       .populate("postedBy")
-       res.send(post);
+      .limit(limit)
+      .skip((page - 1) * limit);
+       res.send(posts);
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to get all posts", error });
