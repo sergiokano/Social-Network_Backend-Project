@@ -31,7 +31,7 @@ const PostController = {
       res.status(500).send({ msg: "Error: Unable to delete a post", error });
     }
   },
-
+  // Endpoint para traer todos los posts junto a los usuarios que hicieron ese post y junto a los comentarios del post
   async getInfo(req, res) {
     try {
       const post = await Post.find()
@@ -42,6 +42,33 @@ const PostController = {
       res.status(500).send({ msg: "Error: Unable to get all posts", error });
     }
   },
+  // Endpoint para buscar post por id
+  // async getPostById(req, res) {
+  //   try {
+  //     const post = await Post.findById()
+  //     .populate("postedBy")
+  //      res.send(post);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).send({ msg: "Error: Unable to get all posts", error });
+  //   }
+  // },
+
+  // Endpoint para buscar post por nombre
+    async getPostsByName (req, res) {
+    try {
+      const posts = await Post.find({
+        $text: {
+          $search: req.params.description,
+        },
+      });
+      res.send(posts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to get posts by name", error })
+      };
+    }
+
 };
 
 
