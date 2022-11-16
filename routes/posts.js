@@ -8,6 +8,7 @@ router.put("/update/:_id",authentication, PostController.updatePost);
 router.delete("/delete/:_id",authentication, PostController.deletePost);
 router.get("/getInfo",authentication, PostController.getInfo);
 router.get("/getByName/:description", authentication, PostController.getPostsByName)
+router.get("/getById/:_id", authentication, PostController.getPostById)
 
 
 

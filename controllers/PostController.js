@@ -43,16 +43,16 @@ const PostController = {
     }
   },
   // Endpoint para buscar post por id
-  // async getPostById(req, res) {
-  //   try {
-  //     const post = await Post.findById()
-  //     .populate("postedBy")
-  //      res.send(post);
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).send({ msg: "Error: Unable to get all posts", error });
-  //   }
-  // },
+  async getPostById(req, res) {
+    try {
+      const post = await Post.findById(req.params._id)
+       res.send(post);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to get post by id", error });
+    }
+  },
+
 
   // Endpoint para buscar post por nombre
     async getPostsByName (req, res) {
