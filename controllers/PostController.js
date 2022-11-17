@@ -77,14 +77,39 @@ const PostController = {
     try {
       const post = await Post.findById(req.params._id);
       if (post.likes.includes(req.user._id)) {
-        return res.status(400).send({ msg: "Post alredy liked" });
+        return res.status(400).send({
+          description: post.description,
+          totalLikes: post.likes.length,
+          msg: "Post alredy liked",
+        });
       }
       post.likes.push(req.user._id);
       post.save();
-      res.send({ msg: "Post liked" });
+      res.send({
+        description: post.description,
+        totalLikes: post.likes.length,
+        msg: "Post liked",
+      });
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to like a post", error });
+    }
+  },
+
+  async removeLike(req, res) {
+    try {
+      const post = await Post.findById(req.params._id);
+      if (post.likes.includes(req.user._id)) {
+        post.likes.splice(req.user._id);
+        post.save();
+        res.send({ 
+          description: post.description,
+          totalLikes : post.likes.length,
+          msg: "Post unliked" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to remove the like", error });
     }
   },
 
@@ -102,7 +127,10 @@ const PostController = {
           msg: `This post has ${post.likes.length} like`,
         });
       } else {
-        return res.send({ msg: `This post has ${post.likes.length} likes` });
+        return res.send({
+          description: post.description,
+          msg: `This post has ${post.likes.length} likes`,
+        });
       }
     } catch (error) {
       console.error(error);
