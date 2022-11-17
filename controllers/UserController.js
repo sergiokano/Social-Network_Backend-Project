@@ -29,7 +29,7 @@ const UserController = {
         return res.status(400).send("Username and/or Password is incorrect")
       }
       const token = jwt.sign({ _id: user._id }, jwt_secret);
-      if (user.tokens.length > 4) user.token.shift();
+      if (user.tokens.length > 4) user.tokens.shift();
       user.tokens.push(token);
       await user.save();
       res.send({ message: "Welcome " + user.name, token });
