@@ -11,9 +11,12 @@ const PostSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
-  //    likes: [{
-  //     type: mongoose.Schema,ObjectId, ref: "User"
-  //    }],
+  likes: [
+    {
+      type: ObjectId,
+      ref: "User",
+    },
+  ],
   comments: [
     {
       text: String,

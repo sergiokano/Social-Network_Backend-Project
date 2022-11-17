@@ -4,7 +4,7 @@ const User = require("../models/User");
 const PostController = {
   async createPost(req, res) {
     try {
-      const post = await Post.create({...req.body, postedBy: req.user._id});
+      const post = await Post.create({ ...req.body, postedBy: req.user._id });
       res.status(201).send(post);
     } catch (error) {
       console.error(error);
@@ -36,10 +36,10 @@ const PostController = {
     try {
       const { page = 1, limit = 10 } = req.query;
       const posts = await Post.find()
-      .populate("postedBy")
-      .limit(limit)
-      .skip((page - 1) * limit);
-       res.send(posts);
+        .populate("postedBy")
+        .limit(limit)
+        .skip((page - 1) * limit);
+      res.send(posts);
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to get all posts", error });
@@ -48,17 +48,16 @@ const PostController = {
   // Endpoint para buscar post por id
   async getPostById(req, res) {
     try {
-      const post = await Post.findById(req.params._id)
-       res.send(post);
+      const post = await Post.findById(req.params._id);
+      res.send(post);
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to get post by id", error });
     }
   },
 
-
   // Endpoint para buscar post por nombre
-    async getPostsByName (req, res) {
+  async getPostsByName(req, res) {
     try {
       const posts = await Post.find({
         $text: {
@@ -68,11 +67,78 @@ const PostController = {
       res.send(posts);
     } catch (error) {
       console.error(error);
-      res.status(500).send({ msg: "Error: Unable to get posts by name", error })
-      };
+      res
+        .status(500)
+        .send({ msg: "Error: Unable to get posts by name", error });
     }
+  },
 
+  async addLike(req, res) {
+    try {
+      const post = await Post.findById(req.params._id);
+      if (post.likes.includes(req.user._id)) {
+        return res.status(400).send({ msg: "Post alredy liked" });
+      }
+      post.likes.push(req.user._id);
+      post.save();
+      res.send({ msg: "Post liked" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to like a post", error });
+    }
+  },
+
+  async getTotalLikes(req, res) {
+    try {
+      const post = await Post.findById(req.params._id);
+      if (post.likes.length == 0) {
+        return res.send({
+          description: post.description,
+          msg: `This post hasn't likes :(`,
+        });
+      } else if (post.likes.length == 1) {
+        return res.send({
+          description: post.description,
+          msg: `This post has ${post.likes.length} like`,
+        });
+      } else {
+        return res.send({ msg: `This post has ${post.likes.length} likes` });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to like a post", error });
+    }
+  },
+
+  //   async addLike(req, res) {
+  //     try {
+  //         const post = await Post.findById(req.params._id);
+  //         if(post.likes.includes(req.user._id)) {
+  //             return res.status(400).send({  });
+  //         }
+  //         post.likes.push(req.user._id);
+  //         post.save();
+  //         res.send({  })
+  //     } catch (error) {
+  //         console.error(error);
+  //         res.status(500).send({  })
+  //     }
+  // },
+  // async removeLike(req, res) {
+  //     try {
+  //         const post = await Post.findById(req.params._id);
+  //         if(!post.likes.includes(req.user._id)) {
+  //             return res.status(400).send({ message: "This post does not have your like" });
+  //         }
+  //         await Post.findByIdAndUpdate(req.params._id, {
+  //             $pull: { likes: req.user._id }
+  //         });
+  //         res.send({ message: ` 'Remove a like from a post' successfully done`})
+  //     } catch (error) {
+  //         console.error(error);
+  //         res.status(500).send({ message: `There was a problem removing a like from post`, error })
+  //     }
+  // }
 };
-
 
 module.exports = PostController;
