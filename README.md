@@ -1,23 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -60,12 +41,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#future-roadmap">Future Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
@@ -108,24 +88,18 @@ Moreover, this project has been pushed to production using Vercel.
 This endpoints are usign GET, POST, PUT and DELETE requests. 
 Moreover are used JWT Tokens to authenticate the user loged to create, modify or delete some post or comment.
 
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-[NodeJS]
-* [![[NodeJ][[NodeJS]]][[NodeJS]-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Express][Express.js]][Express.js-url]
+* [![Node][Node.JS]][Node.JS-url]
+* [![Mongo][MongoDB]][MongoDB-url]
+* [![JWT]][JWT-url]
+* [![Postman]][Postman-url]
+* [![Vercel]][Vercel-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -142,54 +116,51 @@ To get a local copy up and running follow these simple example steps.
 This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
-  npm install npm@latest -g
+  npm install node express mongoose bcrypt
   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you can instruct your audience on installing and setting up your app.
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/sergiokano/Social-Network_Backend-Project.git
    ```
 3. Install NPM packages
    ```sh
-   npm install
+   npm install node express mongoose bcrypt
    ```
-4. Enter your API in `config.js`
+4. Create a .env file copying the example. Needed to have a database in <a href="https://www.mongodb.com/">MongoDB Atlas</a> to have a Mongo URI.
+
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   PORT = 'ENTER YOUR PORT';
+   JWT_SECRET = 'ENTER YOUR JWT SECRET';
+   MONGO_URI = 'ENTER YOUR MONGO URI ROUTE';
    ```
+5. To work in local mode in POSTMAN you should to import a collection from this link to have all endpoints.
+
+  ```js
+https://api.postman.com/collections/24077602-81518af9-a47a-41cb-b061-7f052f9b6ad6?access_key=PMAT-01GJ4S7V7FPMVG0P0EEYBKPM9A
+  ```
+6. Ready to start!
+  ```sh
+  npm start
+  ```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- FUTURE -->
+## Future Roadmap
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+- [ ] Add Swagger Documentation
+- [ ] Add Comment Authorship
+- [ ] Add Multer to upload images
+- [ ] Add Followers
+- [ ] Add User search
+- [ ] Add Frontend using REACT
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -204,9 +175,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feature/YourName`)
+3. Commit your Changes (`git commit -m 'Add some YourName'`)
+4. Push to the Branch (`git push origin feature/YourName`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -216,18 +187,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+This project is under license of Sergio Cano
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -236,20 +196,30 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Use this space to list my favourites SOCIAL NETWORK projects I have explored and inspired by while doing my app.
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* https://github.com/radikalex/backend-social-network
+* https://github.com/Molerog/Red-Social
+* https://github.com/ZainRk/Socia-Media-Server-Side
+* https://github.com/misa-j/social-network
+* https://github.com/shahshubh/socialApp-MERN
+* https://github.com/yamgarcia/DevNet
+* https://github.com/Pobermeier/devmeetup
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- CONTACT -->
+## Contact 👨‍💻️
+  <p align="center">
+<a href = "mailto:sergiocano.design@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+    <a href="https://www.linkedin.com/in/sergiocano-frontend-backend-mern/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+</p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+👨‍💻️ Done by [sergiokano](https://github.com/sergiokano)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -265,14 +235,16 @@ Use this space to list resources you find helpful and would like to give credit 
 [Vue-url]: https://vuejs.org/
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-[NodeJS]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[NodeJS-url]: https://nextjs.org/
+[JWT]: https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens
+[JWT-url]: https://jwt.io/
+[Vercel]: https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white
+[Vercel-url]: https://vercel.com/
+[MongoDB]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/es
+[Express.js]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[Express.js-url]: https://expressjs.com/
+[Node.JS]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
+[Node.JS-url]: https://nextjs.org/
 
+[Postman]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
+[Postman-url]: https://www.postman.com/
