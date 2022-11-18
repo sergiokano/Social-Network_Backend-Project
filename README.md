@@ -28,11 +28,13 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+        <li><a href="#objectives">Objectives</a></li>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+        <li><a href="#endpoints">Endpoints</a></li>
+         <li><a href="#built-with">Built With</a></li>
+      </ul>   
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -50,7 +52,8 @@
 </details>
 
 <!-- ABOUT THE OBJECTIVES -->
-## 🚧 Made a REST API for the following:
+## Objectives
+### 🚧 Made a REST API for the following:
 <objectives>
   <ol>
     <li>User registration using <a href="https://www.npmjs.com/package/bcrypt">Bcrypt.</a></li>
@@ -81,7 +84,7 @@ Moreover, this project has been pushed to production using Vercel.
   <ol>
     <li>Users</a></li>
     <li>Posts</a></li>
-    <li><a href="#">Comments</a></li>
+    <li>Comments</a></li>
   </ol>
 </endpoints>
 
@@ -90,6 +93,7 @@ Moreover are used JWT Tokens to authenticate the user loged to create, modify or
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ### Built With
 
@@ -210,7 +214,7 @@ Use this space to list my favourites SOCIAL NETWORK projects I have explored and
 
 
 <!-- CONTACT -->
-## Contact 👨‍💻️
+## Contact 
   <p align="center">
 <a href = "mailto:sergiocano.design@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
     <a href="https://www.linkedin.com/in/sergiocano-frontend-backend-mern/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
