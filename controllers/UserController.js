@@ -15,6 +15,7 @@ const UserController = {
     }
   },
 
+  
   async loginUser(req, res) {
     try {
       const user = await User.findOne({
