@@ -17,18 +17,13 @@ const UserSchema = new mongoose.Schema(
     },
     password: String,
     tokens: [],
-    // userConected: [{ type: req.user, ref: "UserId"}],
   },
   { timestamps: true }
 );
 
-// UserSchema.index({
-//   name: "text",
-// });
-
 UserSchema.methods.toJSON = function () {
   const user = this._doc;
-  // delete user.tokens;
+  delete user.tokens;
   delete user.password;
   delete user.__v;
   delete user.updatedAt;

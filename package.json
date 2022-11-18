@@ -7,7 +7,7 @@
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sergio Cano",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

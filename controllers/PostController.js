@@ -31,7 +31,7 @@ const PostController = {
       res.status(500).send({ msg: "Error: Unable to delete a post", error });
     }
   },
-  // Endpoint para traer todos los posts junto a los usuarios que hicieron ese post y junto a los comentarios del post
+  // Endpoint to gett all posts and comments with them author and post comments
   async getAllPosts(req, res) {
     try {
       const { page = 1, limit = 10 } = req.query;
@@ -45,7 +45,7 @@ const PostController = {
       res.status(500).send({ msg: "Error: Unable to get all posts", error });
     }
   },
-  // Endpoint para buscar post por id
+  //Endpoint to search by id
   async getPostById(req, res) {
     try {
       const post = await Post.findById(req.params._id);
@@ -56,7 +56,7 @@ const PostController = {
     }
   },
 
-  // Endpoint para buscar post por nombre
+  //Endpoint to search by name
   async getPostsByName(req, res) {
     try {
       const posts = await Post.find({
@@ -102,10 +102,11 @@ const PostController = {
       if (post.likes.includes(req.user._id)) {
         post.likes.splice(req.user._id);
         post.save();
-        res.send({ 
+        res.send({
           description: post.description,
-          totalLikes : post.likes.length,
-          msg: "Post unliked" });
+          totalLikes: post.likes.length,
+          msg: "Post unliked",
+        });
       }
     } catch (error) {
       console.error(error);
@@ -137,36 +138,6 @@ const PostController = {
       res.status(500).send({ msg: "Error: Unable to like a post", error });
     }
   },
-
-  //   async addLike(req, res) {
-  //     try {
-  //         const post = await Post.findById(req.params._id);
-  //         if(post.likes.includes(req.user._id)) {
-  //             return res.status(400).send({  });
-  //         }
-  //         post.likes.push(req.user._id);
-  //         post.save();
-  //         res.send({  })
-  //     } catch (error) {
-  //         console.error(error);
-  //         res.status(500).send({  })
-  //     }
-  // },
-  // async removeLike(req, res) {
-  //     try {
-  //         const post = await Post.findById(req.params._id);
-  //         if(!post.likes.includes(req.user._id)) {
-  //             return res.status(400).send({ message: "This post does not have your like" });
-  //         }
-  //         await Post.findByIdAndUpdate(req.params._id, {
-  //             $pull: { likes: req.user._id }
-  //         });
-  //         res.send({ message: ` 'Remove a like from a post' successfully done`})
-  //     } catch (error) {
-  //         console.error(error);
-  //         res.status(500).send({ message: `There was a problem removing a like from post`, error })
-  //     }
-  // }
 };
 
 module.exports = PostController;
