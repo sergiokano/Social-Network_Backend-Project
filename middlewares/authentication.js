@@ -1,8 +1,7 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
 const jwt = require("jsonwebtoken");
-require("dotenv").config()
-
+require("dotenv").config();
 
 const authentication = async (req, res, next) => {
   try {
@@ -32,12 +31,10 @@ const isPostAuthor = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    return res
-      .status(500)
-      .send({
-        error,
-        message: "Error: there have been a problem verifying your authorship",
-      });
+    return res.status(500).send({
+      error,
+      message: "Error: there have been a problem verifying your authorship",
+    });
   }
 };
 
