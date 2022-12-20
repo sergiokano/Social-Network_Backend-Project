@@ -8,7 +8,7 @@ const UserController = {
     try {
       const password = await bcrypt.hash(req.body.password, 10);
       const user = await User.create({ ...req.body, password });
-      res.status(201).send(user);
+      res.status(201).send({user, message: "Successful login"});
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to create a user", error });
