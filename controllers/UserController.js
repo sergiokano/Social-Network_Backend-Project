@@ -8,13 +8,12 @@ const UserController = {
     try {
       const password = await bcrypt.hash(req.body.password, 10);
       const user = await User.create({ ...req.body, password });
-      res.status(201).send({user, message: "Successful login"});
+      res.status(201).send({ user, message: "User created" });
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to create a user", error });
     }
   },
-
 
   async loginUser(req, res) {
     try {
@@ -54,6 +53,14 @@ const UserController = {
   async conectedUser(req, res) {
     try {
       const user = await User.findById(req.user._id);
+      res.send(user);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async getInfo(req, res) {
+    try {
+      const user = await User.findById(req.user._id).populate("postIds");
       res.send(user);
     } catch (error) {
       console.error(error);
