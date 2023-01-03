@@ -8,7 +8,7 @@ router.put("/update/:_id",authentication, isPostAuthor, PostController.updatePos
 router.delete("/delete/:_id",authentication, PostController.deletePost);
 router.get("/getAll", PostController.getAllPosts);
 router.get("/getByName/:description", authentication, PostController.getPostsByName)
-router.get("/getById/:_id", authentication, PostController.getPostById)
+router.get("/getById/:_id", PostController.getPostById)
 router.put("/addLike/:_id", authentication, PostController.addLike)
 router.put("/removeLike/:_id", authentication, PostController.removeLike)
 router.get("/likes/:_id", authentication, PostController.getTotalLikes)

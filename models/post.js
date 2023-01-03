@@ -17,10 +17,7 @@ const PostSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
-  comments: [
-    { type: ObjectId,
-      ref: "Comment"}
-  ],
+  comments: [{ type: ObjectId, ref: "Comment" }],
   postedBy: { type: mongoose.Schema.ObjectId, ref: "User" },
 
   created: {

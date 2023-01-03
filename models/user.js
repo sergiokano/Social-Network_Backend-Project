@@ -19,7 +19,6 @@ const UserSchema = new mongoose.Schema(
     password: String,
     tokens: [],
     postIds: [{ type: ObjectId, ref: "Post" }],
-
   },
   { timestamps: true }
 );
