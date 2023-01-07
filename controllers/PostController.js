@@ -4,7 +4,14 @@ const User = require("../models/User");
 const PostController = {
   async createPost(req, res) {
     try {
-      const post = await Post.create({ ...req.body, postedBy: req.user._id });
+      // Create the song
+      const song = await createSong(req.body.songId);
+      // Create the post with the song
+      const post = await Post.create({
+        ...req.body,
+        postedBy: req.user._id,
+        song: song._id,
+      });
       await User.findByIdAndUpdate(req.user._id, {
         $push: { postIds: post._id },
       });

@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
-const ObjectId = mongoose.SchemaTypes.ObjectId;
+const SpotifyWebApi = require("spotify-web-api-node");
+require("dotenv").config();
+const SpotifyClientId = process.env.CLIENT_ID;
+const SpotifyClientSecret = process.env.CLIENT_SECRET;
+
+const spotifyApi = new SpotifyWebApi({
+  clientId: SpotifyClientId,
+  clientSecret: SpotifyClientSecret,
+});
 
 const SongSchema = new mongoose.Schema({
   name: {
@@ -24,22 +32,36 @@ const SongSchema = new mongoose.Schema({
   },
   likes: [
     {
-      type: ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: "User",
     },
   ],
   postedBy: { type: mongoose.Schema.ObjectId, ref: "User" },
-
   created: {
     type: Date,
     default: Date.now,
   },
 });
 
-SongSchema.index({
-  description: "text",
-});
-
 const Song = mongoose.model("Song", SongSchema);
 
-module.exports = Song;
+const getSongInfo = async (songId) => {
+  try {
+    const song = await spotifyApi.getTrack(songId);
+    return {
+      name: song.body.name,
+      artist: song.body.artists[0].name,
+      song: song.body.preview_url,
+      img: song.body.album.images[0].url,
+      duration: song.body.duration_ms,
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const createSong = async (songId) => {
+  const songInfo = await getSongInfo(songId);
+  const song = new Song(songInfo);
+  return song.save();
+};
