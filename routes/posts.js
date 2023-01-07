@@ -12,6 +12,7 @@ router.get("/getById/:_id", PostController.getPostById)
 router.put("/addLike/:_id", authentication, PostController.addLike)
 router.put("/removeLike/:_id", authentication, PostController.removeLike)
 router.get("/likes/:_id", authentication, PostController.getTotalLikes)
+router.get('/getSongbyId/:id', PostController.getSong);
 
 
 

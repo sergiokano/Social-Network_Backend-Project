@@ -1,8 +1,12 @@
-const { Song, createSong } = require('../models/Song');
-const { Post } = require("../models/Post");
+const { Song, createSong } = require("../models/Song");
+const Post  = require("../models/Post");
 const User = require("../models/User");
+const SpotifyWebApi = require("spotify-web-api-node");
 
-
+const spotifyApi = new SpotifyWebApi({
+  clientId: "1dbe8b334ec24389932a496a87fedcfe",
+  clientSecret: "545e16d28770464e9bb0c13ac4084a95",
+});
 
 const PostController = {
   async createPost(req, res) {
@@ -150,6 +154,17 @@ const PostController = {
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to like a post", error });
+    }
+  },
+
+  async getSong(req, res) {
+    try {
+      const songId = req.params.id;
+      const song = await spotifyApi.getTrack(songId);
+      res.send(song.body);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error: Unable to get the song", error });
     }
   },
 };
