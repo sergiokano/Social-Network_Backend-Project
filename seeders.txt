@@ -10,31 +10,23 @@
 }
 
 
-
-
+nuevo usuario:
 {
-    "name": "Sergio",
-    "email": "sergioc@gmail.com",
-    "password": "123",
-    "gender": "male"
-    "month": "may",
-    "date": "14",
-    year: { type: String, required: true },
-    likedSongs: { type: [String], default: [] },
-    playlists: { type: [String], default: [] },
-    isAdmin: { type: Boolean, default: false },
-    tokens: [],
-    postIds: [{ type: ObjectId, ref: "Post" }],
-  },
-  { timestamps: true }
-);
+    "email": "charlie2@gmail.com",
+    "password": "Charlie123"
+}
 
 
-name: "Charlie",
-email: "charlie@gmail.com",
-password: "Charlie123",
-gender: "male",
-month: "January",
-date: 5,
-year: "1990",
-});
+
+
+
+crear usuario:
+{
+"name": "Charlie",
+"email": "charlie2@gmail.com",
+"password": "Charlie123",
+"gender": "male",
+"month": "January",
+"date": "5",
+"year": "1990"
+}
