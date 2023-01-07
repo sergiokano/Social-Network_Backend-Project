@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Post = require("../models/Song-old");
+const Post = require("../models/Song");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 

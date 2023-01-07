@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 const SpotifyWebApi = require("spotify-web-api-node");
 require("dotenv").config();
-const SpotifyClientId = process.env.CLIENT_ID;
-const SpotifyClientSecret = process.env.CLIENT_SECRET;
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: SpotifyClientId,
-  clientSecret: SpotifyClientSecret,
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
 });
 
 const SongSchema = new mongoose.Schema({
