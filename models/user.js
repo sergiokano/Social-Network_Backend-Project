@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "Please, fill in your name"],
+      minlength: 5,
+      maxlength: 20,
     },
     email: {
       type: String,
@@ -16,7 +18,52 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       required: [true, "Please, fill in your email"],
     },
-    password: String,
+    password: {
+      type: String,
+      required: [true, "Please, fill in your password"],
+      minlength: 8,
+      maxlength: 1024,
+      pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/,
+      message:
+        "Please enter a password that meets the following criteria: at least 8 characters long, contains at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character.",
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["male", "female", "non-binary"],
+    },
+    month: {
+      type: String,
+      required: true,
+      enum: {
+        values: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ],
+        message:
+          "Please use one of the following months: January, February, March, April, May, June, July, August, September, October, November, December.",
+      },
+    },
+    date: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 31,
+    },
+    year: { type: String, required: true },
+    likedSongs: { type: [String], default: [] },
+    playlists: { type: [String], default: [] },
+    isAdmin: { type: Boolean, default: false },
     tokens: [],
     postIds: [{ type: ObjectId, ref: "Post" }],
   },
