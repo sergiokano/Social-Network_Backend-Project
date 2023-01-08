@@ -1,5 +1,5 @@
 const { Song, createSong } = require("../models/Song");
-const Post  = require("../models/Post");
+const Post = require("../models/Post");
 const User = require("../models/User");
 const SpotifyWebApi = require("spotify-web-api-node");
 
@@ -11,13 +11,11 @@ const spotifyApi = new SpotifyWebApi({
 const PostController = {
   async createPost(req, res) {
     try {
-      // Create the song
-      const song = await createSong(req.body.songId);
-      // Create the post with the song
+      const { description, track } = req.body;
       const post = new Post({
-        ...req.body,
+        description,
+        track,
         postedBy: req.user._id,
-        song: song._id,
       });
       await post.save();
       await User.findByIdAndUpdate(req.user._id, {

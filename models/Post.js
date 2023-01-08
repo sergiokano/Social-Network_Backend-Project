@@ -7,10 +7,12 @@ const PostSchema = new mongoose.Schema({
     required: [true, "Text is required"],
     default: "",
   },
-  // image: {
-  //   data: Buffer,
-  //   contentType: String,
-  // },
+  track: {
+    title: String,
+    artist: String,
+    uri: String,
+    albumUrl: String
+    },
   likes: [
     {
       type: ObjectId,
