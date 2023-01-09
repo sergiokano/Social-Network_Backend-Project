@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Post = require("../models/Song");
+const Post = require("../models/Post");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -22,9 +22,10 @@ const authentication = async (req, res, next) => {
 
 const isPostAuthor = async (req, res, next) => {
   try {
+    console.log(req.params._id)
     const post = await Post.findById(req.params._id);
     if (!post) {
-      return res.status(401).send({ msg: "Error: this post doesn't exist" });
+      return res.status(404).send({ msg: "Error: this post doesn't exist" });
     }
     if (post.postedBy.toString() !== req.user._id.toString()) {
       return res.status(403).send({ message: "This post is not yours" });
