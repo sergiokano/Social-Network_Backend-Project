@@ -67,8 +67,10 @@ const PostController = {
   //Endpoint to search by id
   async getPostById(req, res) {
     try {
-      const post = await Post.findById(req.params._id);
-      res.send(post);
+      const post = await Post.findById(req.params._id)
+      .populate({path: "comments" , select: "description -_id" })
+      res.send(post)
+
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error: Unable to get post by id", error });
