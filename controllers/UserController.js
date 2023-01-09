@@ -52,7 +52,8 @@ const UserController = {
   },
   async conectedUser(req, res) {
     try {
-      const user = await User.findById(req.user._id);
+      const user = await User.findById(req.user._id)
+      .populate({path: "postIds"  })
       res.send(user);
     } catch (error) {
       console.error(error);
@@ -60,6 +61,7 @@ const UserController = {
   },
 
   async getInfo(req, res) {
+    const _id = req.param._id;
     try {
       const user = await User.findById(req.user._id).populate("postIds");
       res.send(user);
