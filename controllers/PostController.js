@@ -11,6 +11,9 @@ const spotifyApi = new SpotifyWebApi({
 const PostController = {
   async createPost(req, res) {
     try {
+      if (!req.user) {
+        return res.status(401).send({ msg: "Unauthorized" });
+      }
       const { description, track } = req.body;
       const post = new Post({
         description,
