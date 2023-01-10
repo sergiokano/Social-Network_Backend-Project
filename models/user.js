@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "Please, fill in your name"],
-      minlength: 5,
+      minlength: 3,
       maxlength: 20,
     },
     email: {
@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema(
     gender: {
       type: String,
       required: true,
-      enum: ["male", "female", "non-binary"],
+      enum: ["Male", "Female", "Non-Binary","male", "female"],
     },
     month: {
       type: String,
